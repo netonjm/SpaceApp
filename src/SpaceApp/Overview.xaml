@@ -3,34 +3,36 @@
     <ContentPage.Content>
         <StackLayout Padding="15" Orientation="Vertical">
             <StackLayout VerticalOptions="Center" Orientation="Horizontal">
-                <Image BackgroundColor="Red" WidthRequest="150" HeightRequest="70" Source="" />
+                <Image x:Name="logoImage" BackgroundColor="Red" WidthRequest="150" HeightRequest="70" />
                 <StackLayout Padding="30,0,0,0" VerticalOptions="Center" Orientation="Horizontal">
-                    <Image BackgroundColor="Red" WidthRequest="50" HeightRequest="50" Source="" />
-                    <Label VerticalOptions="Center" FontAttributes="Bold" Text="28º" />
+                    <Image x:Name ="cloudImage" BackgroundColor="Red" WidthRequest="50" HeightRequest="50" Source="" />
+                    <Label x:Name="cloudLabel" VerticalOptions="Center" FontAttributes="Bold" Text="28º" />
                 </StackLayout>
             </StackLayout>
             <StackLayout Padding="0,10,0,0" Orientation="Horizontal">
                 <StackLayout HorizontalOptions="Center" Orientation="Vertical">
                     <Label HorizontalOptions="Center" Text="Riesgo de incendio" />
                     <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
-                        <Image />
-                        <Label Text="Medio (54%)" />
+                        <Image x:Name ="riskLevelImage" />
+                        <Label x:Name="riskLevelLabel" Text="Medio" />
+                         <Label x:Name="riskLevelPercentageLabel" Text="(54%)" />
                     </StackLayout>
                 </StackLayout>
                 <StackLayout Orientation="Vertical">
                 </StackLayout>
                 <StackLayout HorizontalOptions="Center" Orientation="Vertical">
-                    <Label HorizontalOptions="Center" Text="Lunes 24 de Agosto" />
+                    <Label x:Name="dayLabel" HorizontalOptions="Center" Text="Lunes 24 de Agosto" />
                     <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
-                        <Image />
-                        <Label Text="Valencia (España)" />
+                        <Image x:Name="locationImage" />
+                        <Label x:Name="locationLabel" Text="Valencia (España)" />
                     </StackLayout>
                 </StackLayout>
             </StackLayout>
             <StackLayout Padding="0,20,0,0" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
-                <Button TextColor="Black" BackgroundColor="Red" WidthRequest="100" Text="fdsfsfdfsd" />
-                <Button TextColor="Black" BackgroundColor="Red" WidthRequest="100" Text="fdsfsfdfsd" />
-                <Button TextColor="Black" BackgroundColor="Red" WidthRequest="100" Text="fdsfsfdfsd" />
+                <Button x:Name="signInButton" TextColor="Black" BackgroundColor="Red" WidthRequest="100" Text="SIGN IN" />
+                <Button  x:Name="signUpButton" TextColor="Black" BackgroundColor="Red" WidthRequest="100" Text="SIGN UP" />
+                <Button x:Name="signFacebookButton" TextColor="Black" BackgroundColor="Red" WidthRequest="100" Text="FACEBOOK SIGN UP" />
+                 <Button x:Name="signTwitterButton" TextColor="Black" BackgroundColor="Red" WidthRequest="100" Text="TWITTER SIGN UP" />
             </StackLayout>
             
           <Button x:Name="alertButton" Clicked="Handle_Clicked" TextColor="Black" BackgroundColor="Red" HorizontalOptions="Center" HeightRequest="120" WidthRequest="120" Text="Fire Alarm" />

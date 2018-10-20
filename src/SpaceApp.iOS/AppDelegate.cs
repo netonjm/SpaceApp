@@ -24,10 +24,11 @@ namespace SpaceApp.iOS
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			global::Xamarin.Forms.Forms.Init ();
-
+			global::Xamarin.FormsMaps.Init ();
 			//Xamarin.Forms.DependencyService.Register<SharedManager>();
+			var service = new WeatherService ();
 
-			LoadApplication (new App ());
+			LoadApplication (new App (service));
 
 			return base.FinishedLaunching (app, options);
 		}

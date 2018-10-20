@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -23,6 +24,11 @@ namespace SpaceApp
 			//despacho = new Client (RaspiDespacho, credentials.user, credentials.password)
 			//	.TryConnect ();
 			//Devices.Add (("despacho", despacho, Color.Accent));
+		}
+
+		internal static void Send (string v)
+		{
+			throw new NotImplementedException ();
 		}
 	}
 }

@@ -7,15 +7,25 @@ namespace SpaceApp
 {
 	public partial class App : Application
 	{
-		public static PoiService ClientService;
+		public static IWeatherService WeatherService;
+		public static GpsService GpsService;
+
+		public static Weather CurrentWeather;
 
 		public App ()
 		{
+		}
+
+		public App (IWeatherService service)
+		{
 			InitializeComponent ();
 
-			MainPage = new Overview();
 
-			ClientService = new PoiService();
+
+			MainPage = new NavigationPage (new Overview ());
+			//GpsService = new GpsService ();
+			WeatherService = service;
+			CurrentWeather = service.GetWeather ("46920", "es", "metric");
 		}
 
 		protected override void OnStart ()

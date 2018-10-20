@@ -1,0 +1,17 @@
+*.userprefs
+*.mpack
+*.md5
+packages
+bin
+debug
+obj
+nuget.exe
+/src/Build/.vs/Xamarin.IoT.Build/v14/*.suo
+/src/Build/Xamarin.IoT.Tasks/*.user
+/src/Core/.vs/Xamarin.IoT.Core/v15/*.suo
+/src/Core/.nuget/nuget.exe
+/src/MSBuild/.vs/Xamarin.IoT.Build/v14/*.suo
+/src/MSBuild/Xamarin.IoT.Tasks/Xamarin.IoT.Tasks.csproj.user
+/src/MSBuild/.vs/Xamarin.IoT.Build/v15/*.suo
+src/IDE/Sdks
+bot-provisioning/provisioning-script.exe

@@ -2,16 +2,20 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-[assembly: XamlCompilation (XamlCompilationOptions.Compile)]
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace SpaceApp
 {
 	public partial class App : Application
 	{
+		public static PoiService ClientService;
+
 		public App ()
 		{
 			InitializeComponent ();
 
-			MainPage = new MainPage ();
+			MainPage = new Overview();
+
+			ClientService = new PoiService();
 		}
 
 		protected override void OnStart ()

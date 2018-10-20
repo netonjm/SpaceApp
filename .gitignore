@@ -15,3 +15,7 @@ nuget.exe
 /src/MSBuild/.vs/Xamarin.IoT.Build/v15/*.suo
 src/IDE/Sdks
 bot-provisioning/provisioning-script.exe
+
+.vs
+
+src/.vs/

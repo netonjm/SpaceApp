@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using SpaceApp.Services;
 using UIKit;
 
 namespace SpaceApp.iOS
@@ -23,6 +24,9 @@ namespace SpaceApp.iOS
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			global::Xamarin.Forms.Forms.Init ();
+
+			//Xamarin.Forms.DependencyService.Register<SharedManager>();
+
 			LoadApplication (new App ());
 
 			return base.FinishedLaunching (app, options);

@@ -4,6 +4,7 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Web.Http;
 using System.Web.Http.SelfHost;
+using IoTSharp.Components;
 
 namespace SpaceApp.Host
 {
@@ -11,6 +12,12 @@ namespace SpaceApp.Host
 	{
 		public static void Main (string [] args)
 		{
+			var dht = new DhtSensor (Connectors.GPIO4, DhtModel.Dht11);
+			dht.Start ();
+
+			SpaceService.GreenLed.Value = true;
+			SpaceService.RedLed.Value = false;
+
 			var port = "8085";
 			var config = new HttpSelfHostConfiguration ($"http://localhost:{port}");
 			config.MapHttpAttributeRoutes ();

@@ -99,6 +99,8 @@
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\app-icon.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -173,6 +175,37 @@
     <BundleResource Include="Resources\marker-wihte%402x.png" />
     <BundleResource Include="Resources\marker-wihte%403x.png" />
     <BundleResource Include="Resources\point.png" />
+    <BundleResource Include="Resources\app-icon.png" />
+    <BundleResource Include="Resources\app-icon%402x.png" />
+    <BundleResource Include="Resources\app-icon%403x.png" />
+    <BundleResource Include="Resources\leyend-map.png" />
+    <BundleResource Include="Resources\leyend-map%402x.png" />
+    <BundleResource Include="Resources\leyend-map%403x.png" />
+    <BundleResource Include="Resources\list-view.png" />
+    <BundleResource Include="Resources\list-view%402x.png" />
+    <BundleResource Include="Resources\list-view%403x.png" />
+    <BundleResource Include="Resources\Splash-screen.png" />
+    <BundleResource Include="Resources\Splash-screen%402x.png" />
+    <BundleResource Include="Resources\Splash-screen%403x.png" />
+    <BundleResource Include="Resources\Spot.jpg" />
+    <BundleResource Include="Resources\weather-fire-alarm-black.png" />
+    <BundleResource Include="Resources\weather-fire-alarm-black%402x.png" />
+    <BundleResource Include="Resources\weather-fire-alarm-black%403x.png" />
+    <BundleResource Include="Resources\weather-humidity.png" />
+    <BundleResource Include="Resources\weather-humidity%402x.png" />
+    <BundleResource Include="Resources\weather-humidity%403x.png" />
+    <BundleResource Include="Resources\weather-sun-black.png" />
+    <BundleResource Include="Resources\weather-sun-black%402x.png" />
+    <BundleResource Include="Resources\weather-sun-black%403x.png" />
+    <BundleResource Include="Resources\weather-sun.png" />
+    <BundleResource Include="Resources\weather-sun%402x.png" />
+    <BundleResource Include="Resources\weather-sun%403x.png" />
+    <BundleResource Include="Resources\weather-wind.png" />
+    <BundleResource Include="Resources\weather-wind%402x.png" />
+    <BundleResource Include="Resources\weather-wind%403x.png" />
+    <BundleResource Include="Resources\marker-fake.png" />
+    <BundleResource Include="Resources\marker-fake%402x.png" />
+    <BundleResource Include="Resources\marker-fake%403x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

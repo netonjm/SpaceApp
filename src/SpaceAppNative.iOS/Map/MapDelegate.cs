@@ -37,7 +37,7 @@ namespace SpaceAppNative.iOS
 				annotationView.Annotation = annotation;
 
 			// configure our annotation view properties
-			var image = UIImage.FromFile ("point.png");
+			var image = UIImage.FromFile ("marker-fake.png");
 			if (annotationView != null) {
 				annotationView.Image = image;
 			}

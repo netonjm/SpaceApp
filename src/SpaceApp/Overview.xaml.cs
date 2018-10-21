@@ -29,6 +29,7 @@ namespace SpaceApp
 		{
 			base.OnAppearing ();
 
+			BackgroundImage = "wellcome-background.png";
 			navPage = new MainTabbedPage ();
 
 			var currentWeather = App.CurrentWeather;

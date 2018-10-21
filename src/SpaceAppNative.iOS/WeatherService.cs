@@ -1,16 +1,27 @@
 ﻿using System.Net;
-using Foundation;
-using SpaceApp.Services;
-using Xamarin.Forms;
-using System.Linq;
-using System.Threading.Tasks;
 using System;
 using Newtonsoft.Json;
-using System.Net.Http;
 
-//[assembly: Dependency(typeof(SharedManager))]
 namespace SpaceApp.Services
 {
+	public interface IWeatherService
+	{
+		Weather GetWeather (string zipCode, string country, string measure);
+	}
+
+	public class Weather
+	{
+		// Because labels bind to these values, set them to an empty string to
+		// ensure that the label appears on all platforms by default.
+		public string Title { get; set; } = " ";
+		public string Temperature { get; set; } = " ";
+		public string Wind { get; set; } = " ";
+		public string Humidity { get; set; } = " ";
+		public string Visibility { get; set; } = " ";
+		public string Sunrise { get; set; } = " ";
+		public string Sunset { get; set; } = " ";
+	}
+
 	public class WeatherService : IWeatherService
 	{
 		public Weather GetWeather (string zipCode, string country, string measure)
@@ -19,7 +30,7 @@ namespace SpaceApp.Services
 			string key = "42c0e77ad3018dc3c35da3da97274faf";
 			string queryString = $"http://api.openweathermap.org/data/2.5/weather?zip={zipCode},{country}&appid={key}&units={measure}";
 
-			dynamic results = GetDataFromService (queryString);
+			var results = GetDataFromService (queryString);
 
 			if (results ["weather"] != null) {
 				var weather = new Weather {
@@ -43,7 +54,7 @@ namespace SpaceApp.Services
 
 		static dynamic GetDataFromService (string queryString)
 		{
-			WebClient client = new WebClient ();
+			var client = new WebClient ();
 			var result = client.DownloadString (queryString);
 
 			dynamic data = null;

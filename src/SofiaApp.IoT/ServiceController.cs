@@ -5,7 +5,6 @@ using System.Net.Http;
 
 namespace SofiaApp.IoT
 {
-
 	public class AlertServiceController : ApiController
 	{
 		[Route ("sofia/event")]

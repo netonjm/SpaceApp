@@ -9,7 +9,7 @@ namespace SofiaApp.Host.Entities
 
 		}
 
-		public WhereAreFires (GeoBox geoBox) : base (25)
+		public WhereAreFires (GeoBox geoBox) : this ()
 		{
 			//this.date1 = int.Parse (date1.ToString (""));
 			//this.date2 = int.Parse (date2.ToString (""));

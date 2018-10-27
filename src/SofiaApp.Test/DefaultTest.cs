@@ -49,6 +49,23 @@ namespace SofiaApp.Test
 		}
 
 		[Test ()]
+		public void CheckFireExistenceTest ()
+		{
+			var post = new CheckFireExistence ();
+			var response = WebApiHelper.GetWebApiResponse<CheckFireExistenceResponse> (post);
+			Assert.AreEqual (true, response.AnyFireDetected ());
+		}
+
+		[Test ()]
+		public void HowManyFiresExistTest ()
+		{
+			var post = new HowManyFiresExist ();
+			var response = WebApiHelper.GetWebApiResponse<HowManyFiresExistResponse> (post);
+			Assert.AreEqual (true, response.number);
+		}
+
+
+		[Test ()]
 		public void FindNearestCityTest ()
 		{
 			var post = new FindNearestCity (new GeoPoint (39.561673f, -0.505148f));

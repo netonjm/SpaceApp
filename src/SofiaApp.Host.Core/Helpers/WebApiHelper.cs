@@ -34,7 +34,6 @@ namespace SofiaApp.Helpers
 				var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse ();
 				using (var streamReader = new StreamReader (httpResponse.GetResponseStream ())) {
 					var result = streamReader.ReadToEnd ();
-
 					return JsonConvert.DeserializeObject<T> (result);
 				}
 			}

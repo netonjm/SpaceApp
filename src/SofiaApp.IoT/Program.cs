@@ -6,7 +6,7 @@ using System.Web.Http;
 using System.Web.Http.SelfHost;
 using IoTSharp.Components;
 
-namespace SofiaApp.Host
+namespace SofiaApp.IoT
 {
 	class Program
 	{

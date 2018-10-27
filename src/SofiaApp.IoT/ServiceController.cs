@@ -9,7 +9,7 @@ using System.Diagnostics;
 using System.IO;
 using IoTSharp.Components;
 
-namespace SofiaApp.Host
+namespace SofiaApp.IoT
 {
 	public static class SpaceService
 	{

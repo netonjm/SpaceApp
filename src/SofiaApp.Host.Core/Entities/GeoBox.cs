@@ -11,6 +11,8 @@ lry: Y coordinate of the lower right point of geobox
 In order to specify this rectangular region with longitude and latitude, the X in this definition represents the longitude and the Y is the latitude of a geo-location.
  */
 
+using System;
+
 namespace SofiaApp.Host.Entities
 {
 	public class GeoBox
@@ -31,5 +33,13 @@ namespace SofiaApp.Host.Entities
 		/// </summary>
 		/// <value>The upper left.</value>
 		public GeoPoint LowerRight { get; set; }
+
+		public static GeoBox From (GeoPoint point, int zoom = 1)
+		{
+			var geo = new GeoBox ();
+			geo.UpperLeft = new GeoPoint (point.Latitude + 0.037223f * zoom, point.Longitude - 0.093163f * zoom);
+			geo.LowerRight = new GeoPoint (point.Latitude - 0.017456f * zoom, point.Longitude + 0.0789353f * zoom);
+			return geo;
+		}
 	}
 }

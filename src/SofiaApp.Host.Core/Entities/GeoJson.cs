@@ -15,7 +15,7 @@ namespace SofiaApp.Host.Entities
 		public Geometry geometry { get; set; }
 		public FeatureProperty properties { get; set; }
 
-		public static Feature From (UserData userData)
+		public static Feature From (TwitterFirePoint userData)
 		{
 			var item = new Feature () {
 				properties = new FeatureProperty ("", ""),

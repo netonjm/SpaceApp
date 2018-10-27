@@ -8,11 +8,6 @@ using SofiaApp.Host.Entities;
 
 namespace SofiaApp.Helpers
 {
-	public class MyClass
-	{
-
-	}
-
 	public static class WebApiHelper
 	{
 		public static T GetWebApiResponse<T> (ApiArgs args)

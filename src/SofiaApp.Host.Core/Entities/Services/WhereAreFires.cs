@@ -2,30 +2,17 @@
 
 namespace SofiaApp.Host.Entities
 {
-	public abstract class ApiArgs
+	public class WhereAreFires : ApiArgs
 	{
-		public int serviceId { get; private set; } = 25;
-		public int userId { get; protected set; } = 42;
-		public string purpose { get; protected set; } = "Sofia app";
-
-		public ApiArgs (int serviceId)
-		{
-			this.serviceId = serviceId;
-		}
-	}
-
-	public class WhereAreFiresApiArgs : ApiArgs
-	{
-		public WhereAreFiresApiArgs () : base (25)
+		public WhereAreFires () : base (25)
 		{
 
 		}
 
-		public WhereAreFiresApiArgs (GeoBox geoBox, DateTime date1, DateTime date2) : base (25)
+		public WhereAreFires (GeoBox geoBox) : base (25)
 		{
 			//this.date1 = int.Parse (date1.ToString (""));
 			//this.date2 = int.Parse (date2.ToString (""));
-
 			ulx = geoBox.UpperLeft.Longitude;
 			uly = geoBox.UpperLeft.Latitude;
 			lrx = geoBox.LowerRight.Longitude;
@@ -39,5 +26,21 @@ namespace SofiaApp.Host.Entities
 		public double uly { get; set; } = 25;
 		public double lrx { get; set; } = -98;
 		public double lry { get; set; } = 20;
+	}
+
+	public class WhereAreFiresResponse
+	{
+		public float lon { get; set; }
+		public float lat { get; set; }
+		public float temp4 { get; set; }
+		public float temp11 { get; set; }
+		public int temp { get; set; }
+		public float size { get; set; }
+		public int ecosys { get; set; }
+		public int flag { get; set; }
+		public int sat { get; set; }
+		public int yd { get; set; }
+		public int time { get; set; }
+		public string datetime { get; set; }
 	}
 }

@@ -10,8 +10,7 @@ using SofiaApp.Host.Entities;
 
 namespace SofiaApp.Host.Web.Controllers
 {
-
-	public class PointServiceController : ControllerBase
+	public class FirePointServiceController : ControllerBase
 	{
 		//[Route ("sofia/point/")]
 		//public ActionResult<int> GetActionEvent ()

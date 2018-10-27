@@ -4,7 +4,6 @@ using System.Net;
 using System.Net.Http;
 using System.Collections.Generic;
 using System.Linq;
-using SofiaApp.Host.Core;
 using System.Diagnostics;
 using System.IO;
 using IoTSharp.Components;

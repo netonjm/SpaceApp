@@ -4,10 +4,16 @@ using System.IO;
 using System.Net;
 using System.Text;
 using Newtonsoft.Json;
+using SofiaApp.Host.Entities;
 
-namespace SofiaApp.Test
+namespace SofiaApp.Helpers
 {
-	public class WebApiHelper
+	public class MyClass
+	{
+
+	}
+
+	public static class WebApiHelper
 	{
 		public static T GetWebApiResponse<T> (ApiArgs args)
 		{

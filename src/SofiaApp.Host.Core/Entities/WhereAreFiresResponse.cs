@@ -1,5 +1,6 @@
-﻿namespace SofiaApp.Test
+﻿namespace SofiaApp.Host.Entities
 {
+
 	public class WhereAreFiresResponse
 	{
 		public float lon { get; set; }

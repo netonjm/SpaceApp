@@ -44,7 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SofiaApp.Host.Core\SofiaApp.Host.Core.csproj">
-      <Project>{73C51A96-16DF-4266-9A7E-8BE05166E3E7}</Project>
+      <Project>{807A9DC1-5B0E-4DE4-80B6-44B322F113EB}</Project>
       <Name>SofiaApp.Host.Core</Name>
     </ProjectReference>
   </ItemGroup>

@@ -1,4 +1,7 @@
-﻿namespace SofiaApp.Maps
+﻿
+using SofiaApp.Host;
+
+namespace SofiaApp.Host.Entities
 {
 	public class GeoJson
 	{
@@ -11,6 +14,26 @@
 		public string type { get; set; } = "Feature";
 		public Geometry geometry { get; set; }
 		public FeatureProperty properties { get; set; }
+
+		public static Feature From (UserData userData)
+		{
+			var item = new Feature () {
+				properties = new FeatureProperty ("", ""),
+				geometry = new Geometry (userData.Point.Latitude,
+										 userData.Point.Longitude)
+			};
+			return item;
+		}
+
+		public static Feature From (WhereAreFiresResponse userData)
+		{
+			var item = new Feature () {
+				properties = new FeatureProperty ("", ""),
+				geometry = new Geometry (userData.lat,
+				                         userData.lon)
+			};
+			return item;
+		}
 	}
 
 	public class Geometry
@@ -28,29 +51,9 @@
 	{
 		public string title { get; set; } = "Point";
 		public string description { get; set; } = "Point";
-	}
 
-	public class GeoPoint
-	{
-		public double Latitude { get; set; }
-		public double Longitude { get; set; }
-
-		public static bool TryParse (string s, out GeoPoint result)
-		{
-			result = null;
-
-			var parts = s.Split (',');
-			if (parts.Length != 2) {
-				return false;
-			}
-
-			double latitude, longitude;
-			if (double.TryParse (parts [0], out latitude) &&
-				double.TryParse (parts [1], out longitude)) {
-				result = new GeoPoint () { Longitude = longitude, Latitude = latitude };
-				return true;
-			}
-			return false;
+		public FeatureProperty (string title, string description) {
+			this.title = title; this.description = description;
 		}
 	}
 }

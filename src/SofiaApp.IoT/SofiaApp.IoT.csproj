@@ -12,11 +12,6 @@
 		<PackageReference Include="IoTSharp.Components.Raspbian" Version="0.5.1" />
 	</ItemGroup>
 	<ItemGroup>
-	  <None Update="sound.mp3">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	</ItemGroup>
-	<ItemGroup>
 	  <ProjectReference Include="..\SofiaApp.Host.Core\SofiaApp.Host.Core.csproj" />
 	</ItemGroup>
 </Project>

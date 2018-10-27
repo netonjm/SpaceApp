@@ -105,6 +105,8 @@
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Map\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />
@@ -117,19 +119,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="ViewController.cs" />
-    <Compile Include="ViewController.designer.cs">
-      <DependentUpon>ViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Resources\Main.cs" />
-    <Compile Include="MapViewController.cs" />
-    <Compile Include="MapViewController.designer.cs">
-      <DependentUpon>MapViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HomeViewController.cs" />
-    <Compile Include="HomeViewController.designer.cs">
-      <DependentUpon>HomeViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="BasicMapAnnotation.cs" />
     <Compile Include="Map\MapService.cs" />
     <Compile Include="Map\MapDelegate.cs" />
@@ -137,11 +127,23 @@
     <Compile Include="Map\MapView.designer.cs">
       <DependentUpon>MapView.cs</DependentUpon>
     </Compile>
-    <Compile Include="SpotViewController.cs" />
-    <Compile Include="SpotViewController.designer.cs">
+    <Compile Include="Controllers\HomeViewController.cs" />
+    <Compile Include="Controllers\HomeViewController.designer.cs">
+      <DependentUpon>HomeViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\MapViewController.cs" />
+    <Compile Include="Controllers\MapViewController.designer.cs">
+      <DependentUpon>MapViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\SpotViewController.cs" />
+    <Compile Include="Controllers\SpotViewController.designer.cs">
       <DependentUpon>SpotViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="WeatherService.cs" />
+    <Compile Include="Controllers\ViewController.cs" />
+    <Compile Include="Controllers\ViewController.designer.cs">
+      <DependentUpon>ViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Services\WeatherService.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Home.jpg" />

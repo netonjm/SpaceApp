@@ -15,4 +15,8 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\SofiaApp.Host.Core\SofiaApp.Host.Core.csproj" />
 	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Formater\" />
+	  <Folder Include="Controllers\" />
+	</ItemGroup>
 </Project>

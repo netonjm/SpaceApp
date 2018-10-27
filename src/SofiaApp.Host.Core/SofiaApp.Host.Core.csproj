@@ -38,6 +38,7 @@
     <Compile Include="PostArgs\WhereAreFiresApiArgs.cs" />
     <Compile Include="Helpers\WebApiHelper.cs" />
     <Compile Include="Responses\WhereAreFiresResponse.cs" />
+    <Compile Include="Entities\GeoJson.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -46,6 +47,7 @@
     <Folder Include="PostArgs\" />
     <Folder Include="Responses\" />
     <Folder Include="Helpers\" />
+    <Folder Include="Entities\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

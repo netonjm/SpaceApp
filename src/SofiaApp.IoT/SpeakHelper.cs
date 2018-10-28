@@ -1,21 +1,33 @@
 ﻿using System.Diagnostics;
+using System.Threading;
+using System.Threading.Tasks;
 using IoTSharp.Components;
 
 namespace SofiaApp.IoT
 {
-	public static class SpaceService
+	class SofiaIoTEnvirontment
 	{
 		public static IoTPin GreenLed, RedLed;
 
-		static SpaceService ()
+		CancellationTokenSource cancellationTokenSource;
+
+		SofiaIoTEnvirontment ()
 		{
 			GreenLed = new IoTPin (Connectors.GPIO27);
 			GreenLed.SetDirection (IoTPinDirection.DirectionOutInitiallyLow);
 			RedLed = new IoTPin (Connectors.GPIO22);
 			RedLed.SetDirection (IoTPinDirection.DirectionOutInitiallyLow);
+			cancellationTokenSource = new CancellationTokenSource ();
+			Task.Run (() => {
+				while (!cancellationTokenSource.IsCancellationRequested) {
+
+
+					Thread.Sleep (5000);
+				}
+			}, cancellationTokenSource.Token);
 		}
 
-		public static string Speak (string text)
+		public string Speak (string text)
 		{
 			var proc = new Process {
 				StartInfo = new ProcessStartInfo {
@@ -30,5 +42,7 @@ namespace SofiaApp.IoT
 			proc.Start ();
 			return proc.StandardOutput.ReadToEnd ();
 		}
+
+		readonly public static SofiaIoTEnvirontment Current = new SofiaIoTEnvirontment ();
 	}
 }

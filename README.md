@@ -8,7 +8,7 @@ The idea of the project is represented much better in the [attached documentatio
 https://2018.spaceappschallenge.org/challenges/volcanoes-icebergs-and-asteroids-oh-my/real-time-fire-app/teams/gohub/project)
 
 
-### Sofia Server
+### Sofia.Server
 
 Sofia has a heart, and this is the server, with the ability to process, store and supply information from different media, producing a WebApi (json) so that device/platform can consume without any problem.
 
@@ -29,7 +29,7 @@ For the moment we have published 3 points of consumption for the consumption of 
 The application is a Console application developed in DotNetCore with C #
 https://docs.microsoft.com/en-us/dotnet/core/
 
-### Sofia Mobile
+### Sofia.Mobile
 
 Description:
 Mobile applications are the most efficient and fastest way to reach the final consumer. For this we have created an iOS application to consume data directly from **SofiaServer**.
@@ -49,7 +49,7 @@ https://docs.microsoft.com/es-es/xamarin/ios/
 
 
 
-### IoT application (DIY Project)
+### Sofia.IoT (DIY Project)
 
 As an additional project, we wanted to incorporate a project to demonstrate how easy it can be to consume the APIs we provide, and with very little effort, the community can create their own IoT devices for early detection of fires in the area.
 

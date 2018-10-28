@@ -7,7 +7,7 @@ using SofiaApp.Services;
 
 namespace SofiaApp.Host
 {
-	public class SofiaEnvirontment
+	class SofiaEnvirontment
 	{
 		const int DefaultZoom = 500000;
 		internal readonly List<NasaFirePoint> nasaFirePoints;
@@ -16,7 +16,7 @@ namespace SofiaApp.Host
 		readonly GeoPoint defaultPoint = new GeoPoint (39.495387f, -0.475974f);
 		readonly WeatherService weatherService;
 
-		public SofiaEnvirontment ()
+		SofiaEnvirontment ()
 		{
 			nasaFirePoints = new List<NasaFirePoint> ();
 			firePoints = new List<FirePoint> ();

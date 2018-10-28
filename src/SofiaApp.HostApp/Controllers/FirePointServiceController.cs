@@ -13,14 +13,27 @@ namespace SofiaApp.Host.Web.Controllers
 {
 	public class FirePointServiceController : ControllerBase
 	{
-		[Route ("sofia/firepoints/add/{firepoint}")]
-		public ActionResult<string> GetFirepointEvent (string firepoint)
+		[Route ("sofia/firepoints/add")]
+		public ActionResult<string> GetFirepointEvent ()
 		{
-			if (!GeoPoint.TryParse (firepoint, out GeoPoint point)) {
+			var query = Request.QueryString;
+			var parameters = GetParameters (query);
+			if (parameters.Count == 0) {
 				return "";
 			}
-			var firePoint = SofiaEnvirontment.Current.AddAppFirepoint (point, "127.0.0.1", "testAccount");
+			var latStr = parameters.FirstOrDefault (s => s.parameter == nameof ("lat")).value;
+			var lonStr = parameters.FirstOrDefault (s => s.parameter == nameof ("lon")).value;
+
+			if (!float.TryParse (latStr, out float lat) || !float.TryParse (lonStr, out float lon))
+				return "";
+
+			var firePoint = SofiaEnvirontment.Current.AddAppFirepoint (new GeoPoint (lat, lon), "127.0.0.1", "testAccount");
 			return firePoint.ID;
+		}
+
+		private string nameof (object lat)
+		{
+			throw new NotImplementedException ();
 		}
 
 		List<(string parameter, string value)> GetParameters (QueryString query) {
@@ -62,23 +75,6 @@ namespace SofiaApp.Host.Web.Controllers
 			return result;
 		}
 
-		[Route ("sofia/public/firepoints/get")]
-		public ActionResult<FirePoint[]> GetSofiaPublicFirePoints ()
-		{
-			var query = Request.QueryString;
-			var parameters = GetParameters (query);
-			if (parameters.Count == 0) {
-				return new FirePoint[0];
-			}
-			var latStr = parameters.FirstOrDefault (s => s.parameter == "lat").value;
-			var lonStr = parameters.FirstOrDefault (s => s.parameter == "lon").value;
-
-			if (!float.TryParse (latStr, out float lat) || !float.TryParse (lonStr, out float lon))
-				return new FirePoint [0];
-
-			return SofiaEnvirontment.Current.GetPublicSofiaFirePoints ();
-		}
-
 		[Route ("sofia/public/weather")]
 		public ActionResult<Weather> GetWeatherFromCity ()
 		{
@@ -98,10 +94,26 @@ namespace SofiaApp.Host.Web.Controllers
 			return weather;
 		}
 
+		[Route ("sofia/public/firepoints/get")]
+		public ActionResult<FirePoint []> GetSofiaPublicFirePoints ()
+		{
+			var query = Request.QueryString;
+			var parameters = GetParameters (query);
+			if (parameters.Count == 0) {
+				return new FirePoint [0];
+			}
+			var latStr = parameters.FirstOrDefault (s => s.parameter == "lat").value;
+			var lonStr = parameters.FirstOrDefault (s => s.parameter == "lon").value;
+
+			if (!float.TryParse (latStr, out float lat) || !float.TryParse (lonStr, out float lon))
+				return new FirePoint [0];
+
+			return SofiaEnvirontment.Current.GetPublicSofiaFirePoints ();
+		}
+
 		[Route ("sofia/firepoints/get")]
 		public ActionResult<GeoJson> GetSofiaFirePoints ()
 		{
-
 			GeoJson result = SofiaEnvirontment.Current.GetGeoSofiaFirePoints ();
 			return result;
 		}

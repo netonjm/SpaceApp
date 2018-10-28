@@ -12,5 +12,6 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <Compile Remove="ServiceController.cs" />
+	  <Compile Remove="SpeakHelper.cs" />
 	</ItemGroup>
 </Project>

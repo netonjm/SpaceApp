@@ -106,7 +106,9 @@
     <Folder Include="Resources\" />
     <Folder Include="Map\" />
     <Folder Include="Controllers\" />
+    <Folder Include="Extensions\" />
     <Folder Include="Services\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />
@@ -121,7 +123,6 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Resources\Main.cs" />
     <Compile Include="BasicMapAnnotation.cs" />
-    <Compile Include="Map\MapService.cs" />
     <Compile Include="Map\MapDelegate.cs" />
     <Compile Include="Map\MapView.cs" />
     <Compile Include="Map\MapView.designer.cs">
@@ -143,6 +144,9 @@
     <Compile Include="Controllers\ViewController.designer.cs">
       <DependentUpon>ViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="SofiaClientEnvirontment.cs" />
+    <Compile Include="Services\WebServices.cs" />
+    <Compile Include="Helpers\StaticHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Home.jpg" />
@@ -207,6 +211,12 @@
     <BundleResource Include="Resources\marker-fake.png" />
     <BundleResource Include="Resources\marker-fake%402x.png" />
     <BundleResource Include="Resources\marker-fake%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SofiaApp.Host.Core\SofiaApp.Host.Core.csproj">
+      <Project>{807A9DC1-5B0E-4DE4-80B6-44B322F113EB}</Project>
+      <Name>SofiaApp.Host.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

@@ -22,10 +22,12 @@ namespace SofiaApp.iOS
 		public override void LoadView ()
 		{
 			base.LoadView ();
-			mapViewContent.Map.AddAnnotations (MapService.Pois.ToArray ());
+
+			var annotations = SofiaClientEnvirontment.Current.MapAnnotations.ToArray ();
+			mapViewContent.Map.AddAnnotations (annotations);
+
 			var mapDelegate = new MapDelegate (this);
 			mapViewContent.Map.Delegate = mapDelegate;
 		}
-
 	}
 }

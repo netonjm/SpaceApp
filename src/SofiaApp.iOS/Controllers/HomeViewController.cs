@@ -12,6 +12,7 @@ namespace SofiaApp.iOS
 		public HomeViewController (IntPtr handle) : base (handle)
 		{
 		}
+
 		partial void fireAlertAction (NSObject sender)
 		{
 			StaticHelper.ShowDialog (this);

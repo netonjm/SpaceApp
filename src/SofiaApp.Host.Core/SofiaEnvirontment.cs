@@ -6,17 +6,22 @@ using System.Linq;
 
 namespace SofiaApp.Host
 {
-
 	public class SofiaEnvirontment
 	{
 		const int DefaultZoom = 500000;
 		internal readonly List<NasaFirePoint> nasaFirePoints;
 		internal readonly List<FirePoint> firePoints;
 
+		readonly GeoPoint defaultPoint = new GeoPoint (39.495387f, -0.475974f);
+
 		public SofiaEnvirontment ()
 		{
 			nasaFirePoints = new List<NasaFirePoint> ();
 			firePoints = new List<FirePoint> ();
+
+			var args = new WhereAreFires (GeoBox.From (defaultPoint, DefaultZoom));
+			var firesDetected = WebApiHelper.GetNasaWebApiResponse <WhereAreFiresResponse []> (args);
+			AddItems (firesDetected);
 		}
 
 		void AddItems (WhereAreFiresResponse[] items) {
@@ -40,7 +45,8 @@ namespace SofiaApp.Host
 				Date = DateTime.Now, Title = $"User",
 				NearestCity = FindNearestCity.From (geoPoint) , 
 				Point = geoPoint };
-				userData.Title = $"{userData.NearestCity} (U)";
+				userData.Title = $"{userData.GetCityName ()} (U)";
+				userData.Description = "";
 				firePoints.Add (userData);
 			return userData;
 		}
@@ -48,7 +54,7 @@ namespace SofiaApp.Host
 		public FirePoint AddTwitterFirepoint (GeoPoint geoPoint, string ip, string account, string data)
 		{
 			var args = new FindNearestCity (geoPoint);
-			var nearestCityResponse = WebApiHelper.GetWebApiResponse<FindNearestCityResponse> (args);
+			var nearestCityResponse = WebApiHelper.GetNasaWebApiResponse<FindNearestCityResponse> (args);
 			var userData = new TwitterFirePoint () {
 				Ip = ip,
 				NearestCity = FindNearestCity.From (geoPoint), 
@@ -57,9 +63,15 @@ namespace SofiaApp.Host
 				Date = DateTime.Now, 
 				ParsedData = data
 			};
-			userData.Title = $"{userData.NearestCity} (T)";
+			userData.Title = $"{userData.GetCityName ()} (T)";
+			userData.Description = "";
 			firePoints.Add (userData);
 			return userData;
+		}
+
+		public FirePoint[] GetPublicSofiaFirePoints ()
+		{
+			return firePoints.ToArray ();
 		}
 
 		public GeoJson GetGeoSofiaFirePoints ()
@@ -75,10 +87,6 @@ namespace SofiaApp.Host
 
 		public GeoJson GetGeoNasaFirePoints (GeoPoint point)
 		{
-			var args = new WhereAreFires (GeoBox.From (point, DefaultZoom));
-			var firesDetected = WebApiHelper.GetWebApiResponse<WhereAreFiresResponse []> (args);
-			AddItems (firesDetected);
-
 			var result = new GeoJson ();
 			List<Feature> features = new List<Feature> ();
 			foreach (var response in nasaFirePoints) {

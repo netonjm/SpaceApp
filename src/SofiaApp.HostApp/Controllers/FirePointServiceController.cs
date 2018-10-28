@@ -34,14 +34,20 @@ namespace SofiaApp.Host.Web.Controllers
 		}
 
 		[Route ("sofia/firepoints/nasa/get/{location}")]
-		public ActionResult<GeoJson> GetNasaFirePoints (string geopoint)
+		public ActionResult<GeoJson> GetNasaFirePoints (string location)
 		{
-			if (!GeoPoint.TryParse (geopoint, out GeoPoint point)) {
+			if (!GeoPoint.TryParse (location, out GeoPoint point)) {
 				return null;
 			}
 
 			GeoJson result = SofiaEnvirontment.Current.GetGeoNasaFirePoints (point);
 			return result;
+		}
+
+		[Route ("sofia/public/firepoints/get")]
+		public ActionResult<FirePoint[]> GetSofiaPublicFirePoints ()
+		{
+			return SofiaEnvirontment.Current.GetPublicSofiaFirePoints ();
 		}
 
 		[Route ("sofia/firepoints/get")]

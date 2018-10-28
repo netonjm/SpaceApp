@@ -41,11 +41,19 @@ The application is developed in Xamarin.iOS in C # language https: //docs.micros
 
 ### IoT application (DIY Project)
 
-As a bonus project, we wanted to incorporate a project to demonstrate how easy it can be to consume the APIs we provide, and that with very little effort, the community can create their own IoT devices for early warning of fires.
+As an additional project, we wanted to incorporate a project to demonstrate how easy it can be to consume the APIs we provide, and with very little effort, the community can create their own IoT devices for early detection of fires in the area.
 
-This assistant consumes the web service and
+The wizard periodically consults the APIs provided by the server and announces through a synthesized voice where a nearby fire has been detected, with temperature data from the installed sensors or using the OpenWeather services in their area.
 
-It consists of an application in .Net (mono), to execute it in a resident way in a Raspberry Pi with Raspbian installed.
+We also include a visual aid that changes the color of the LED from green to red.
 
-The application is a Console Application in C # language. Executed in a Raspberry PI with Raspbian and MONO installedhttps: //www.mono-project.com/download/stable/#download-lin-raspbianFor the handling of the GPIO it is used:
-https://github.com/netonjm/IoTSharp.Components
+For the future we could add a physical button as an additional way to inform Sofia about a nearby fire.
+
+These are some photos of the prototype that we gathered for the presentation of the project.
+
+![](https://github.com/gohubvlc/sofia-app/raw/master/Assets/iot.png)
+
+The application is a Console Application in C # language. Executed in a Raspberry PI with Raspbian and MONO installed
+
+How install Mono: https://www.mono-project.com/download/stable/#download-lin-raspbian
+GPIO library: https://github.com/netonjm/IoTSharp.Components

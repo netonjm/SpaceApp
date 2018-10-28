@@ -15,7 +15,7 @@ namespace SofiaApp.Host.Entities
 		public Geometry geometry { get; set; }
 		public FeatureProperty properties { get; set; }
 
-		public static Feature From (TwitterFirePoint userData)
+		public static Feature From (FirePoint userData)
 		{
 			var item = new Feature () {
 				properties = new FeatureProperty ("", ""),
@@ -25,12 +25,12 @@ namespace SofiaApp.Host.Entities
 			return item;
 		}
 
-		public static Feature From (WhereAreFiresResponse userData)
+		public static Feature From (NasaFirePoint userData)
 		{
 			var item = new Feature () {
-				properties = new FeatureProperty ("", ""),
-				geometry = new Geometry (userData.lat,
-				                         userData.lon)
+				properties = new FeatureProperty (userData.Title, userData.Description),
+				geometry = new Geometry (userData.Fire.lat,
+				                         userData.Fire.lon)
 			};
 			return item;
 		}

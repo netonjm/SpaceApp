@@ -8,7 +8,14 @@ namespace SofiaApp.Host.Entities
 		public GeoPoint Point { get; set; }
 		public string Ip { get; set; }
 		public string Title { get; set; }
+		public string Description { get; set; }
 		public FindNearestCityResponse NearestCity { get; set; }
+		public string ID { get; private set; }
+
+		public FirePoint ()
+		{
+			ID = Guid.NewGuid ().ToString ();
+		}
 	}
 
 	public class AppFirePoint : FirePoint

@@ -1,4 +1,6 @@
-﻿namespace SofiaApp.Host.Entities
+﻿using SofiaApp.Helpers;
+
+namespace SofiaApp.Host.Entities
 {
 	public class FindNearestCity : ApiArgs
 	{
@@ -15,7 +17,15 @@
 			latitude = point.Latitude;
 			longitude = point.Longitude;
 		}
+
+		public static FindNearestCityResponse From (GeoPoint geoPoint)
+		{
+			var args = new FindNearestCity (geoPoint);
+			return WebApiHelper.GetWebApiResponse<FindNearestCityResponse> (args);
+		}
 	}
+
+	//{"latitude":51.506321,"longitude":-0.12714}
 
 	public class FindNearestCityResponse
 	{

@@ -17,7 +17,7 @@ namespace SofiaApp.Test
 		[Test ()]
 		public void GetGeoData ()
 		{
-			var json = sofiaEnvirontment.GetGeoData (new GeoPoint (39.561673f, -0.505148f));
+			var json = sofiaEnvirontment.GetGeoNasaFirePoints (new GeoPoint (39.561673f, -0.505148f));
 			Assert.IsTrue (json.features.Length > 0);
 		}
 
@@ -61,7 +61,7 @@ namespace SofiaApp.Test
 		{
 			var post = new HowManyFiresExist ();
 			var response = WebApiHelper.GetWebApiResponse<HowManyFiresExistResponse> (post);
-			Assert.AreEqual (true, response.number);
+			Assert.AreEqual (21, response.number);
 		}
 
 

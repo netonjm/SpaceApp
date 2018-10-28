@@ -12,21 +12,42 @@ namespace SofiaApp.Host.Web.Controllers
 {
 	public class FirePointServiceController : ControllerBase
 	{
-		//[Route ("sofia/point/")]
-		//public ActionResult<int> GetActionEvent ()
-		//{
-		//	ServiceTest.Count++;
-		//	return ServiceTest.Count;
-		//}
-
-		[Route ("sofia/location/{data}")]
-		public ActionResult<GeoJson> GetActionEvent (string data)
+		[Route ("sofia/firepoints/add/{firepoint}")]
+		public ActionResult<string> GetFirepointEvent (string firepoint)
 		{
-			if (!GeoPoint.TryParse (data, out GeoPoint point)) {
+			if (!GeoPoint.TryParse (firepoint, out GeoPoint point)) {
+				return "";
+			}
+			var firePoint = SofiaEnvirontment.Current.AddAppFirepoint (point, "127.0.0.1", "testAccount");
+			return firePoint.ID;
+		}
+
+		[Route ("sofia/firepoint/{id}/title/{title}")]
+		public ActionResult<bool> GetFirepointTitleEvent (string id, string title)
+		{
+			var firepoint = SofiaEnvirontment.Current.GetFirepoint (id);
+			if (firepoint == null) {
+				return false;
+			}
+			firepoint.Title = title;
+			return true;
+		}
+
+		[Route ("sofia/firepoints/nasa/get/{location}")]
+		public ActionResult<GeoJson> GetNasaFirePoints (string geopoint)
+		{
+			if (!GeoPoint.TryParse (geopoint, out GeoPoint point)) {
 				return null;
 			}
 
-			GeoJson result = SofiaEnvirontment.Current.GetGeoData (point);
+			GeoJson result = SofiaEnvirontment.Current.GetGeoNasaFirePoints (point);
+			return result;
+		}
+
+		[Route ("sofia/firepoints/get")]
+		public ActionResult<GeoJson> GetSofiaFirePoints ()
+		{
+			GeoJson result = SofiaEnvirontment.Current.GetGeoSofiaFirePoints ();
 			return result;
 		}
 	}

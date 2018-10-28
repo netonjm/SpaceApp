@@ -2,42 +2,46 @@
 using System.Collections.Generic;
 using SofiaApp.Helpers;
 using SofiaApp.Host.Entities;
+using System.Linq;
 
 namespace SofiaApp.Host
 {
+
 	public class SofiaEnvirontment
 	{
-		internal readonly List<WhereAreFiresResponse> nasaResponses;
-		internal readonly List<FirePoint> userResponses;
+		const int DefaultZoom = 500000;
+		internal readonly List<NasaFirePoint> nasaFirePoints;
+		internal readonly List<FirePoint> firePoints;
 
 		public SofiaEnvirontment ()
 		{
-			nasaResponses = new List<WhereAreFiresResponse> ();
-			userResponses = new List<FirePoint> ();
+			nasaFirePoints = new List<NasaFirePoint> ();
+			firePoints = new List<FirePoint> ();
 		}
 
 		void AddItems (WhereAreFiresResponse[] items) {
 			foreach (var fire in items) {
-				if (!nasaResponses.Contains (fire)) {
-					nasaResponses.Add (fire);
+				if (!nasaFirePoints.Select (s => s.Fire).Contains (fire)) {
+					var firePoint = new NasaFirePoint (fire) {
+						Title = $"Fire Detected {nasaFirePoints.Count}#", 
+					};
+					firePoint.Description = $"A fire was detected near {firePoint.NearestCity.title}";
+					nasaFirePoints.Add (firePoint);
 				}
 			}
 		}
 
-		FindNearestCityResponse GetFindNearestCity (GeoPoint geoPoint) {
-			var args = new FindNearestCity (geoPoint);
-			return WebApiHelper.GetWebApiResponse<FindNearestCityResponse> (args);
-		}
+		public FirePoint GetFirepoint (string id) => firePoints.FirstOrDefault (s => s.ID == id);
 
 		public FirePoint AddAppFirepoint (GeoPoint geoPoint, string ip, string account)
 		{
 			var userData = new AppFirePoint () {
 				Ip = ip,
 				Date = DateTime.Now, Title = $"User",
-				NearestCity = GetFindNearestCity (geoPoint) , 
+				NearestCity = FindNearestCity.From (geoPoint) , 
 				Point = geoPoint };
 				userData.Title = $"{userData.NearestCity} (U)";
-				userResponses.Add (userData);
+				firePoints.Add (userData);
 			return userData;
 		}
 
@@ -47,34 +51,40 @@ namespace SofiaApp.Host
 			var nearestCityResponse = WebApiHelper.GetWebApiResponse<FindNearestCityResponse> (args);
 			var userData = new TwitterFirePoint () {
 				Ip = ip,
-				NearestCity = GetFindNearestCity (geoPoint), 
+				NearestCity = FindNearestCity.From (geoPoint), 
 				Point = geoPoint, 
 				Account = account, 
 				Date = DateTime.Now, 
 				ParsedData = data
 			};
 			userData.Title = $"{userData.NearestCity} (T)";
-			userResponses.Add (userData);
+			firePoints.Add (userData);
 			return userData;
 		}
 
-		List<Feature> GetFeatures () 
+		public GeoJson GetGeoSofiaFirePoints ()
 		{
-			List<Feature> items = new List<Feature> ();
-			foreach (var response in nasaResponses) {
-				items.Add (Feature.From (response));
+			var result = new GeoJson ();
+			List<Feature> features = new List<Feature> ();
+			foreach (var response in firePoints) {
+				features.Add (Feature.From (response));
 			}
-			return items;
+			result.features = features.ToArray ();
+			return result;
 		}
 
-		public GeoJson GetGeoData (GeoPoint point)
+		public GeoJson GetGeoNasaFirePoints (GeoPoint point)
 		{
-			var args = new WhereAreFires ();
+			var args = new WhereAreFires (GeoBox.From (point, DefaultZoom));
 			var firesDetected = WebApiHelper.GetWebApiResponse<WhereAreFiresResponse []> (args);
 			AddItems (firesDetected);
 
 			var result = new GeoJson ();
-			var features = GetFeatures ();
+			List<Feature> features = new List<Feature> ();
+			foreach (var response in nasaFirePoints) {
+				var feature = Feature.From (response);
+				features.Add (feature);
+			}
 			result.features = features.ToArray ();
 			return result;
 		}

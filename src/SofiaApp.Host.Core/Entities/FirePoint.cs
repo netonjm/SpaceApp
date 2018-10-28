@@ -10,7 +10,7 @@ namespace SofiaApp.Host.Entities
 		public string Title { get; set; }
 		public string Description { get; set; }
 		public FindNearestCityResponse NearestCity { get; set; }
-		public string ID { get; private set; }
+		public string ID { get; internal set; }
 
 		public string GetCityName () 
 		{

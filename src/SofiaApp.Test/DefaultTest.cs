@@ -3,6 +3,7 @@ using NUnit.Framework;
 using SofiaApp.Helpers;
 using SofiaApp.Host;
 using SofiaApp.Host.Entities;
+using SofiaApp.Services;
 
 namespace SofiaApp.Test
 {
@@ -22,15 +23,23 @@ namespace SofiaApp.Test
 		}
 
 		[Test ()]
-		public void GetGeo () 
+		public void GetWeatherTest ()
 		{
-			var point = new GeoPoint (39.561673f, -0.505148f);
-			var geobox = GeoBox.From (point, 1000);
-			var query = new WhereAreFires (geobox);
-			var firesDetected = WebApiHelper.GetWebApiResponse<WhereAreFiresResponse []> (query);
-			Assert.IsNotNull (firesDetected);
-			Assert.IsTrue (firesDetected.Length > 0);
+			var weatherService = new WeatherService ();
+			var weather = weatherService.GetWeather ("46184", "es", WeatherMeasure.Metric);
+			Assert.IsNotNull (weather);
 		}
+
+		//[Test ()]
+		//public void GetGeo () 
+		//{
+		//	var point = new GeoPoint (39.561673f, -0.505148f);
+		//	var geobox = GeoBox.From (point, 1000);
+		//	var query = new WhereAreFires (geobox);
+		//	var firesDetected = WebApiHelper.GetWebApiResponse<WhereAreFiresResponse []> (query);
+		//	Assert.IsNotNull (firesDetected);
+		//	Assert.IsTrue (firesDetected.Length > 0);
+		//}
 
 		[Test ()]
 		public void AddUserData ()
@@ -40,38 +49,38 @@ namespace SofiaApp.Test
 			Assert.AreEqual (response.Ip, "192.168.1.1");
 		}
 
-		[Test ()]
-		public void WhereTheFireTest ()
-		{
-			var post = new WhereAreFires ();
-			var response = WebApiHelper.GetWebApiResponse<WhereAreFiresResponse []> (post);
-			Console.WriteLine ("");
-		}
+		//[Test ()]
+		//public void WhereTheFireTest ()
+		//{
+		//	var post = new WhereAreFires ();
+		//	var response = WebApiHelper.GetWebApiResponse<WhereAreFiresResponse []> (post);
+		//	Console.WriteLine ("");
+		//}
 
-		[Test ()]
-		public void CheckFireExistenceTest ()
-		{
-			var post = new CheckFireExistence ();
-			var response = WebApiHelper.GetWebApiResponse<CheckFireExistenceResponse> (post);
-			Assert.AreEqual (true, response.AnyFireDetected ());
-		}
+		//[Test ()]
+		//public void CheckFireExistenceTest ()
+		//{
+		//	var post = new CheckFireExistence ();
+		//	var response = WebApiHelper.GetWebApiResponse<CheckFireExistenceResponse> (post);
+		//	Assert.AreEqual (true, response.AnyFireDetected ());
+		//}
 
-		[Test ()]
-		public void HowManyFiresExistTest ()
-		{
-			var post = new HowManyFiresExist ();
-			var response = WebApiHelper.GetWebApiResponse<HowManyFiresExistResponse> (post);
-			Assert.AreEqual (21, response.number);
-		}
+		//[Test ()]
+		//public void HowManyFiresExistTest ()
+		//{
+		//	var post = new HowManyFiresExist ();
+		//	var response = WebApiHelper.GetWebApiResponse<HowManyFiresExistResponse> (post);
+		//	Assert.AreEqual (21, response.number);
+		//}
 
 
-		[Test ()]
-		public void FindNearestCityTest ()
-		{
-			var post = new FindNearestCity (new GeoPoint (39.561673f, -0.505148f));
-			var response = WebApiHelper.GetWebApiResponse<FindNearestCityResponse> (post);
-			Assert.AreEqual (response.title, "Madrid");
-		}
+		//[Test ()]
+		//public void FindNearestCityTest ()
+		//{
+		//	var post = new FindNearestCity (new GeoPoint (39.561673f, -0.505148f));
+		//	var response = WebApiHelper.GetWebApiResponse<FindNearestCityResponse> (post);
+		//	Assert.AreEqual (response.title, "Madrid");
+		//}
 	
 		[Test ()]
 		public void CreateGoBox ()

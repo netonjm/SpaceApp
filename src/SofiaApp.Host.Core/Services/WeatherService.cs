@@ -6,7 +6,7 @@ namespace SofiaApp.Services
 {
 	public interface IWeatherService
 	{
-		Weather GetWeather (string zipCode, string country, string measure);
+		Weather GetWeather (string zipCode, string country, WeatherMeasure measure);
 	}
 
 	public class Weather
@@ -22,13 +22,19 @@ namespace SofiaApp.Services
 		public string Sunset { get; set; } = " ";
 	}
 
+	public enum WeatherMeasure
+	{
+		Metric, Imperial
+	}
+
 	public class WeatherService : IWeatherService
 	{
-		public Weather GetWeather (string zipCode, string country, string measure)
+		public Weather GetWeather (string zipCode, string country, WeatherMeasure measure = WeatherMeasure.Metric)
 		{
+			string measureQuery = measure == WeatherMeasure.Metric ? "metric" : "imperial";
 			//Sign up for a free API key at http://openweathermap.org/appid  
 			string key = "42c0e77ad3018dc3c35da3da97274faf";
-			string queryString = $"http://api.openweathermap.org/data/2.5/weather?zip={zipCode},{country}&appid={key}&units={measure}";
+			string queryString = $"http://api.openweathermap.org/data/2.5/weather?zip={zipCode},{country}&appid={key}&units={measureQuery}";
 
 			var results = GetDataFromService (queryString);
 

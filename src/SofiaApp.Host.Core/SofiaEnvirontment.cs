@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using SofiaApp.Helpers;
 using SofiaApp.Host.Entities;
 using System.Linq;
+using SofiaApp.Services;
 
 namespace SofiaApp.Host
 {
@@ -13,11 +14,14 @@ namespace SofiaApp.Host
 		internal readonly List<FirePoint> firePoints;
 
 		readonly GeoPoint defaultPoint = new GeoPoint (39.495387f, -0.475974f);
+		readonly WeatherService weatherService;
 
 		public SofiaEnvirontment ()
 		{
 			nasaFirePoints = new List<NasaFirePoint> ();
 			firePoints = new List<FirePoint> ();
+
+			weatherService = new WeatherService ();
 
 			var args = new WhereAreFires (GeoBox.From (defaultPoint, DefaultZoom));
 			var firesDetected = WebApiHelper.GetNasaWebApiResponse <WhereAreFiresResponse []> (args);
@@ -98,5 +102,11 @@ namespace SofiaApp.Host
 		}
 
 		readonly public static SofiaEnvirontment Current = new SofiaEnvirontment ();
+
+		public Weather GetWeather (string country, string zipCode, WeatherMeasure measure)
+		{
+			var weather = weatherService.GetWeather (zipCode, country, measure);
+			return weather;
+		}
 	}
 }

@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SofiaApp.Helpers;
 using SofiaApp.Host.Entities;
+using System.Linq;
+using Microsoft.AspNetCore.Http;
+using SofiaApp.Services;
 
 namespace SofiaApp.Host.Web.Controllers
 {
@@ -20,6 +21,23 @@ namespace SofiaApp.Host.Web.Controllers
 			}
 			var firePoint = SofiaEnvirontment.Current.AddAppFirepoint (point, "127.0.0.1", "testAccount");
 			return firePoint.ID;
+		}
+
+		List<(string parameter, string value)> GetParameters (QueryString query) {
+			var result = new List<(string parameter, string value)> ();
+			if (query.HasValue && query.Value.Length > 0) {
+				if (query.Value [0] != '?') {
+					return result;
+				}
+				var parameters = query.Value.Substring (1).Split ('&');
+				foreach (var parameter in parameters) {
+					var values = parameter.Split ('=');
+					if (values.Length == 2) {
+						result.Add ((values [0], values [1]));
+					}
+				}
+			}
+			return result;
 		}
 
 		[Route ("sofia/firepoint/{id}/title/{title}")]
@@ -47,12 +65,43 @@ namespace SofiaApp.Host.Web.Controllers
 		[Route ("sofia/public/firepoints/get")]
 		public ActionResult<FirePoint[]> GetSofiaPublicFirePoints ()
 		{
+			var query = Request.QueryString;
+			var parameters = GetParameters (query);
+			if (parameters.Count == 0) {
+				return new FirePoint[0];
+			}
+			var latStr = parameters.FirstOrDefault (s => s.parameter == "lat").value;
+			var lonStr = parameters.FirstOrDefault (s => s.parameter == "lon").value;
+
+			if (!float.TryParse (latStr, out float lat) || !float.TryParse (lonStr, out float lon))
+				return new FirePoint [0];
+
 			return SofiaEnvirontment.Current.GetPublicSofiaFirePoints ();
+		}
+
+		[Route ("sofia/public/weather")]
+		public ActionResult<Weather> GetWeatherFromCity ()
+		{
+			var query = Request.QueryString;
+			var parameters = GetParameters (query);
+			if (parameters.Count == 0) {
+				return null;
+			}
+			var country = parameters.FirstOrDefault (s => s.parameter == "country").value;
+			var zipCode = parameters.FirstOrDefault (s => s.parameter == "zipCode").value;
+			var metric = parameters.FirstOrDefault (s => s.parameter == "metric").value;
+			if (string.IsNullOrEmpty (zipCode) || string.IsNullOrEmpty (country))
+				return null;
+
+			var measure = metric == "imperial" ? WeatherMeasure.Imperial : WeatherMeasure.Metric;
+			var weather = SofiaEnvirontment.Current.GetWeather (country, zipCode, measure);
+			return weather;
 		}
 
 		[Route ("sofia/firepoints/get")]
 		public ActionResult<GeoJson> GetSofiaFirePoints ()
 		{
+
 			GeoJson result = SofiaEnvirontment.Current.GetGeoSofiaFirePoints ();
 			return result;
 		}

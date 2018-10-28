@@ -34,5 +34,10 @@ namespace SofiaApp.Host.Entities
 		public string location_type { get; set; }
 		public long woeid { get; set; }
 		public string latt_long { get; set; }
+
+		public override string ToString ()
+		{
+			return $"{title} ({latt_long})";
+		}
 	}
 }

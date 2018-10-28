@@ -6,11 +6,16 @@ namespace SofiaApp.Host.Entities
 	{
 		public DateTime Date { get; set; }
 		public GeoPoint Point { get; set; }
-		public string Ip { get; set; }
+		internal string Ip { get; set; }
 		public string Title { get; set; }
 		public string Description { get; set; }
 		public FindNearestCityResponse NearestCity { get; set; }
 		public string ID { get; private set; }
+
+		public string GetCityName () 
+		{
+			return NearestCity?.title ?? "Unknown";
+		}
 
 		public FirePoint ()
 		{

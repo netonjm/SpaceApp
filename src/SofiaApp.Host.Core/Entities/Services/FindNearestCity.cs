@@ -21,7 +21,7 @@ namespace SofiaApp.Host.Entities
 		public static FindNearestCityResponse From (GeoPoint geoPoint)
 		{
 			var args = new FindNearestCity (geoPoint);
-			return WebApiHelper.GetWebApiResponse<FindNearestCityResponse> (args);
+			return WebApiHelper.GetNasaWebApiResponse<FindNearestCityResponse> (args);
 		}
 	}
 

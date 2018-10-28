@@ -10,17 +10,21 @@ namespace SofiaApp.Helpers
 {
 	public static class WebApiHelper
 	{
-		public static T GetWebApiResponse<T> (ApiArgs args)
+		public static T GetNasaWebApiResponse<T> (ApiArgs args) => GetWebApiResponse <T> ("https://hawking.sv.cmu.edu:9016/opennex/getAPIResult", "jmedranojimenez@hotmail.com", "logitech", args);
+
+		public static T GetWebApiResponse<T> (string url, string username, string password, ApiArgs args)
 		{
-			var httpWebRequest = (HttpWebRequest)WebRequest.Create ("https://hawking.sv.cmu.edu:9016/opennex/getAPIResult");
+			var httpWebRequest = (HttpWebRequest)WebRequest.Create (url);
 			httpWebRequest.ContentType = "application/json";
 			httpWebRequest.Method = "POST";
 
-			// Create NetworkCredential Object 
-			var admin_auth = new NetworkCredential ("jmedranojimenez@hotmail.com", "logitech");
+			if (!string.IsNullOrEmpty (username)){
+				// Create NetworkCredential Object 
+				var admin_auth = new NetworkCredential (username, password);
 
-			// Set your HTTP credentials in your request header
-			httpWebRequest.Credentials = admin_auth;
+				// Set your HTTP credentials in your request header
+				httpWebRequest.Credentials = admin_auth;
+			} 
 
 			// callback for handling server certificates
 			ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };

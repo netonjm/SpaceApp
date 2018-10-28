@@ -7,11 +7,15 @@ This repository contains 3 projects, which symbolize the essence of the ecosyste
 The idea of the project is represented much better in the [attached documentation](
 https://2018.spaceappschallenge.org/challenges/volcanoes-icebergs-and-asteroids-oh-my/real-time-fire-app/teams/gohub/project)
 
+
 ### Sofia Server
 
 Sofia has a heart, and this is the server, with the ability to process, store and supply information from different media, producing a WebApi (json) so that device/platform can consume without any problem.
 
+
 ![](https://github.com/gohubvlc/sofia-project/raw/master/diagrams/SofiaSummary.jpg)
+
+
 
 For the moment we have published 3 points of consumption for the consumption of data of our application:
 
@@ -33,11 +37,17 @@ Mobile applications are the most efficient and fastest way to reach the final co
 Additional information:
 
 Includes weather consultation services provided by Openweathermap
+
 https://github.com/gohubvlc/sofia-app/blob/master/src/SofiaApp.Host.Core/Services/WeatherService.cs
 
-The application is developed in Xamarin.iOS in C # language https: //docs.microsoft.com/es-es/xamarin/ios/
+The application is developed in Xamarin.iOS in C# language 
+
+https://docs.microsoft.com/es-es/xamarin/ios/
+
 
 ![](https://github.com/gohubvlc/sofia-project/raw/master/images/APP%20Mockup.jpg)
+
+
 
 ### IoT application (DIY Project)
 
@@ -51,9 +61,13 @@ For the future we could add a physical button as an additional way to inform Sof
 
 These are some photos of the prototype that we gathered for the presentation of the project.
 
+
 ![](https://github.com/gohubvlc/sofia-app/raw/master/Assets/iot.png)
 
-The application is a Console Application in C # language. Executed in a Raspberry PI with Raspbian and MONO installed
 
+
+The application is a Console Application in C # language and can be executed in a Raspberry PI with Raspbian and MONO installed
+
+References:
 How install Mono: https://www.mono-project.com/download/stable/#download-lin-raspbian
 GPIO library: https://github.com/netonjm/IoTSharp.Components

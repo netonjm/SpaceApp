@@ -66,3 +66,207 @@ namespace SpaceAppNative.iOS
 		}
 	}
 }
+
+using System;
+using System.Collections.Generic;
+using CoreGraphics;
+using Foundation;
+using UIKit;
+
+namespace SpaceAppNative.iOS
+{
+	public partial class SpotViewController : UIViewController
+	{
+		List<UIImage> images = new List<UIImage> ();
+		static int i;
+
+		bool isFinished => i >= images.Count;
+
+		public SpotViewController (IntPtr handle) : base (handle)
+		{
+
+		}
+
+		public override void AwakeFromNib ()
+		{
+			base.AwakeFromNib ();
+			images.Add (UIImage.FromFile ("back1.png"));
+			images.Add (UIImage.FromFile ("back2.png"));
+		}
+
+		public override void ViewDidLoad ()
+		{
+			base.ViewDidLoad ();
+
+			if (isFinished) {
+				Finish ();
+			} else {
+				noSpotsNearDetected.Hidden = true;
+			}
+
+		}
+
+		partial void noButtonAction (NSObject sender)
+		{
+			IncrementImage ();
+		}
+
+		void Finish ()
+		{
+			noSpotsNearDetected.Hidden = false;
+			imageSelected.Hidden = noTextField.Hidden = yesTextField.Hidden =
+			noImage.Hidden = yesImage.Hidden = noButton.Hidden = yesButton.Hidden = true;
+		}
+
+		void IncrementImage ()
+		{
+			i++;
+			if (isFinished) {
+				Finish ();
+			} else {
+				imageSelected.Image = images[i];
+			}
+		}
+
+		partial void yesButtonAction (NSObject sender)
+		{
+			IncrementImage ();
+		}
+	}
+}
+
+using System;
+using System.Collections.Generic;
+using CoreGraphics;
+using Foundation;
+using UIKit;
+
+namespace SpaceAppNative.iOS
+{
+	public partial class SpotViewController : UIViewController
+	{
+		List<UIImage> images = new List<UIImage> ();
+		static int i;
+
+		bool isFinished => i >= images.Count;
+
+		public SpotViewController (IntPtr handle) : base (handle)
+		{
+
+		}
+
+		public override void AwakeFromNib ()
+		{
+			base.AwakeFromNib ();
+			images.Add (UIImage.FromFile ("back1.png"));
+			images.Add (UIImage.FromFile ("back2.png"));
+		}
+
+		public override void ViewDidLoad ()
+		{
+			base.ViewDidLoad ();
+
+			if (isFinished) {
+				Finish ();
+			} else {
+				noSpotsNearDetected.Hidden = true;
+			}
+
+		}
+
+		partial void noButtonAction (NSObject sender)
+		{
+			IncrementImage ();
+		}
+
+		void Finish ()
+		{
+			noSpotsNearDetected.Hidden = false;
+			imageSelected.Hidden = noTextField.Hidden = yesTextField.Hidden =
+			noImage.Hidden = yesImage.Hidden = noButton.Hidden = yesButton.Hidden = true;
+		}
+
+		void IncrementImage ()
+		{
+			i++;
+			if (isFinished) {
+				Finish ();
+			} else {
+				imageSelected.Image = images[i];
+			}
+		}
+
+		partial void yesButtonAction (NSObject sender)
+		{
+			IncrementImage ();
+		}
+	}
+}
+
+using System;
+using System.Collections.Generic;
+using CoreGraphics;
+using Foundation;
+using UIKit;
+
+namespace SpaceAppNative.iOS
+{
+	public partial class SpotViewController : UIViewController
+	{
+		List<UIImage> images = new List<UIImage> ();
+		static int i;
+
+		bool isFinished => i >= images.Count;
+
+		public SpotViewController (IntPtr handle) : base (handle)
+		{
+
+		}
+
+		public override void AwakeFromNib ()
+		{
+			base.AwakeFromNib ();
+			images.Add (UIImage.FromFile ("back1.png"));
+			images.Add (UIImage.FromFile ("back2.png"));
+		}
+
+		public override void ViewDidLoad ()
+		{
+			base.ViewDidLoad ();
+
+			if (isFinished) {
+				Finish ();
+			} else {
+				noSpotsNearDetected.Hidden = true;
+			}
+
+		}
+
+		partial void noButtonAction (NSObject sender)
+		{
+			IncrementImage ();
+		}
+
+		void Finish ()
+		{
+			noSpotsNearDetected.Hidden = false;
+			imageSelected.Hidden = noTextField.Hidden = yesTextField.Hidden =
+			noImage.Hidden = yesImage.Hidden = noButton.Hidden = yesButton.Hidden = true;
+		}
+
+		void IncrementImage ()
+		{
+			i++;
+			if (isFinished) {
+				Finish ();
+			} else {
+				imageSelected.Image = images[i];
+			}
+		}
+
+		partial void yesButtonAction (NSObject sender)
+		{
+			IncrementImage ();
+		}
+	}
+}

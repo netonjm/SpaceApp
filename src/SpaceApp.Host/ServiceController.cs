@@ -43,7 +43,7 @@ namespace SpaceApp.Host
 	{
 
 		public AlertServiceController () {
-
+			//ExecutionEngineException//
 		}
 
 		[Route ("sofia/event")]

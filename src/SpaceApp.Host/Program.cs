@@ -33,7 +33,7 @@ namespace SpaceApp.Host
 			finished = true;
 			processingCompletion.Task.Wait ();
 			//SpaceService.Speak ($"La humedad actual es de 86 por cien y una temperatura de 28 grados centigrados, con un viento de siete coma uno metros por hora");
-
+//ewewq
 			//var port = "8085";
 			//var config = new HttpSelfHostConfiguration ($"http://localhost:{port}");
 			//config.MapHttpAttributeRoutes ();

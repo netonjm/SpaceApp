@@ -29,7 +29,9 @@ namespace SpaceApp.Host
 				processingCompletion.TrySetResult (null);
 			});
 		
-			SpaceService.Speak ("Miiiiiira Sooooofíaaaaa. Siiin tu mirada, sigo. Siiin tu mirada, sigo. Miiiiiira Sooooofíaaa a a. Coooomo te mira, dime. Coooomo te mira, dime");
+
+            //te quierooooo!
+			//SpaceService.Speak ("Miiiiiira Sooooofíaaaaa. Siiin tu mirada, sigo. Siiin tu mirada, sigo. Miiiiiira Sooooofíaaa a a. Coooomo te mira, dime. Coooomo te mira, dime");
 			finished = true;
 			processingCompletion.Task.Wait ();
 			//SpaceService.Speak ($"La humedad actual es de 86 por cien y una temperatura de 28 grados centigrados, con un viento de siete coma uno metros por hora");

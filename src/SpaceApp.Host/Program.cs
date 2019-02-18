@@ -18,7 +18,10 @@ namespace SpaceApp.Host
 
 		public static void Main (string [] args)
 		{
-			//var dht = new DhtSensor (Connectors.GPIO4, DhtModel.Dht11);
+			//var dht = new DhtSensor (Connectors.GPIO4, DhtModel.Dht11);dsadsaddsa
+
+
+			//sddsadas
 		}
 	}
 }

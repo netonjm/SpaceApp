@@ -17,7 +17,7 @@ namespace SpaceAppNative.iOS
 
 		public SpotViewController (IntPtr handle) : base (handle)
 		{
-
+            //eeee
 		}
 
 		public override void AwakeFromNib ()

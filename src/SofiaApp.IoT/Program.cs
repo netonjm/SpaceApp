@@ -43,15 +43,7 @@ namespace SofiaApp.IoT
 
 		public static void Main (string [] args)
 		{
-			GreenLed.Value = true;
-			
-				} else {
-					if (alertDectected) {
-						RedLed.Value = false;
-						GreenLed.Value = true;
-						alertDectected = false;
-					}
-				}
+			ewqewqqewwewsadsaddsads
 				Thread.Sleep (5000);
 			}
 		}

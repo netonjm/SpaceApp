@@ -43,22 +43,6 @@ namespace SofiaApp.IoT
 
 		public static void Main (string [] args)
 		{
-		           
-
-
-
-
-
-
-			asd
-			sadasdsadsdsa //Esto es una prueba
-					//var weatherZipCode = Environment.GetEnvironmentVariable ("LOCAL_ZIPCODE");
-					//var weatherContry = Environment.GetEnvironmentVariable ("LOCAL_COUNTRY");
-
-					//var geopoint = ReadLocalGeoPoint ();
-					//var dht = new DhtSensor (Connectors.GPIO4, dsasddasDhtModel.Dht11);
-					//dht.Start ();
-					sd
 			GreenLed.Value = true;
 			RedLed.Value = false;
 

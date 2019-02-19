@@ -19,7 +19,7 @@ namespace SpaceAppNative.iOS
 		public override string Subtitle { get { return subtitle; } }
 		public BasicMapAnnotation (CLLocationCoordinate2D coordinate, string title, string subtitle)
 		{
-			this.coord = coordinate; //ewweew
+			this.coord = coordinate; //ewweew //ewwewew
 			this.title = title;
 			this.subtitle = subtitle;
 		}

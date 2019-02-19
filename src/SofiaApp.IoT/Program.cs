@@ -44,24 +44,7 @@ namespace SofiaApp.IoT
 		public static void Main (string [] args)
 		{
 			GreenLed.Value = true;
-			RedLed.Value = false;
-			//Dasdoksadpodsapko
-			GreenLed = new IoTPin (Connectors.GPIO27);
-			GreenLed.SetDirection (IoTPinDirection.DirectionOutInitiallyLow);
-			RedLed = new IoTPin (Connectors.GPIO22);
-			RedLed.SetDirection (IoTPinDirection.DirectionOutInitiallyLow);
-
-			while (true) {
-				var count = GetFiresAroundYou (geopoint);
-				if (count > 0) {
-					if (!alertDectected) {
-						RedLed.Value = true;
-						GreenLed.Value = false;
-						var currentWeather = weatherService.GetWeather (weatherZipCode, weatherContry, WeatherMeasure.Metric);
-						Speak ($"Warning! {count} has been detected near your position");
-						Speak ($"The current humidity is {currentWeather.Humidity} percent and a temperature of {currentWeather.Temperature} degrees, with a wind of {currentWeather.Wind} meters per hour");
-						alertDectected = true;
-					}
+			
 				} else {
 					if (alertDectected) {
 						RedLed.Value = false;

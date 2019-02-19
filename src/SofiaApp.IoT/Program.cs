@@ -43,31 +43,9 @@ namespace SofiaApp.IoT
 
 		public static void Main (string [] args)
 		{
-<<<<<<< HEAD
-=======
-
-			var proc = new Process {
-				StartInfo = new ProcessStartInfo {
-					FileName = "espeak",
-					Arguments = $"-v es \"{text}\"",
-					UseShellExecute = false,
-					RedirectStandardOutput = true,
-					CreateNoWindow = true
-				}
-			};
-
-
-					//var weatherZipCode = Environment.GetEnvironmentVariable ("LOCAL_ZIPCODE");
-					//var weatherContry = Environment.GetEnvironmentVariable ("LOCAL_COUNTRY");
-
-					//var geopoint = ReadLocalGeoPoint ();
-					//var dht = new DhtSensor (Connectors.GPIO4, dsasddasDhtModel.Dht11);
-					//dht.Start ();
-					sd
->>>>>>> 209ca17... wwww
 			GreenLed.Value = true;
 			RedLed.Value = false;
-
+			//Dasdoksadpodsapko
 			GreenLed = new IoTPin (Connectors.GPIO27);
 			GreenLed.SetDirection (IoTPinDirection.DirectionOutInitiallyLow);
 			RedLed = new IoTPin (Connectors.GPIO22);
